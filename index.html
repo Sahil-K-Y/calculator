@@ -1,176 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Calculator</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f4f4f9;
-        }
-
-        .calculator {
-            width: 320px;
-            background-color: #333;
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .display {
-            margin-bottom: 20px;
-        }
-
-        #result {
-            width: 100%;
-            height: 60px;
-            font-size: 2rem;
-            text-align: right;
-            padding: 10px;
-            border: none;
-            border-radius: 10px;
-            background-color: #eee;
-            color: #333;
-            outline: none;
-        }
-
-        .buttons {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
-
-        .btn {
-            height: 60px;
-            font-size: 1.2rem;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            background-color: #444;
-            color: white;
-            transition: background-color 0.2s;
-        }
-
-        .btn:hover {
-            background-color: #555;
-        }
-
-        .operator {
-            background-color: #f39c12;
-        }
-
-        .operator:hover {
-            background-color: #e67e22;
-        }
-
-        .clear {
-            background-color: #e74c3c;
-        }
-
-        .clear:hover {
-            background-color: #c0392b;
-        }
-
-        .delete {
-            background-color: #7f8c8d;
-        }
-
-        .delete:hover {
-            background-color: #95a5a6;
-        }
-
-        .equals {
-            grid-row: span 2;
-            background-color: #27ae60;
-            height: 130px;
-        }
-
-        .equals:hover {
-            background-color: #2ecc71;
-        }
-
-        .zero {
-            grid-column: span 2;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Professional Calculator</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="calculator">
-        <div class="display">
-            <input type="text" id="result" readonly>
-        </div>
-        <div class="buttons">
-            <button class="btn clear" onclick="clearDisplay()">C</button>
-            <button class="btn delete" onclick="deleteLast()">DEL</button>
-            <button class="btn operator" onclick="appendOperator('/')">/</button>
-            <button class="btn operator" onclick="appendOperator('*')">×</button>
-
-            <button class="btn" onclick="appendNumber('7')">7</button>
-            <button class="btn" onclick="appendNumber('8')">8</button>
-            <button class="btn" onclick="appendNumber('9')">9</button>
-            <button class="btn operator" onclick="appendOperator('-')">-</button>
-
-            <button class="btn" onclick="appendNumber('4')">4</button>
-            <button class="btn" onclick="appendNumber('5')">5</button>
-            <button class="btn" onclick="appendNumber('6')">6</button>
-            <button class="btn operator" onclick="appendOperator('+')">+</button>
-
-            <button class="btn" onclick="appendNumber('1')">1</button>
-            <button class="btn" onclick="appendNumber('2')">2</button>
-            <button class="btn" onclick="appendNumber('3')">3</button>
-            <button class="btn equals" onclick="calculate()">=</button>
-
-            <button class="btn zero" onclick="appendNumber('0')">0</button>
-            <button class="btn" onclick="appendNumber('.')">.</button>
-        </div>
+  <div class="calculator">
+    <div class="display">
+      <div class="expression" id="expression"></div>
+      <div class="result" id="result">0</div>
     </div>
-    <script>
-        const resultInput = document.getElementById('result');
+    <div class="buttons">
+      <button class="btn btn-function" data-action="clear">AC</button>
+      <button class="btn btn-function" data-action="sign">±</button>
+      <button class="btn btn-function" data-action="percent">%</button>
+      <button class="btn btn-operator" data-action="divide">÷</button>
 
-        function appendNumber(number) {
-            resultInput.value += number;
-        }
+      <button class="btn btn-number" data-action="7">7</button>
+      <button class="btn btn-number" data-action="8">8</button>
+      <button class="btn btn-number" data-action="9">9</button>
+      <button class="btn btn-operator" data-action="multiply">×</button>
 
-        function appendOperator(operator) {
-            const lastChar = resultInput.value.slice(-1);
-            if (['+', '-', '*', '/'].includes(lastChar)) {
-                resultInput.value = resultInput.value.slice(0, -1) + operator;
-            } else if (resultInput.value !== "") {
-                resultInput.value += operator;
-            }
-        }
+      <button class="btn btn-number" data-action="4">4</button>
+      <button class="btn btn-number" data-action="5">5</button>
+      <button class="btn btn-number" data-action="6">6</button>
+      <button class="btn btn-operator" data-action="subtract">−</button>
 
-        function clearDisplay() {
-            resultInput.value = "";
-        }
+      <button class="btn btn-number" data-action="1">1</button>
+      <button class="btn btn-number" data-action="2">2</button>
+      <button class="btn btn-number" data-action="3">3</button>
+      <button class="btn btn-operator" data-action="add">+</button>
 
-        function deleteLast() {
-            resultInput.value = resultInput.value.slice(0, -1);
-        }
-
-        function calculate() {
-            try {
-                if (resultInput.value !== "") {
-                    resultInput.value = eval(resultInput.value);
-                }
-            } catch (error) {
-                resultInput.value = "Error";
-                setTimeout(() => {
-                    clearDisplay();
-                }, 1500);
-            }
-        }
-    </script>
+      <button class="btn btn-number btn-zero" data-action="0">0</button>
+      <button class="btn btn-number" data-action="decimal">.</button>
+      <button class="btn btn-equals" data-action="calculate">=</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>

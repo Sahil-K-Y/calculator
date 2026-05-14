@@ -1,33 +1,64 @@
-# Modern Calculator
+# Professional Calculator
 
-A sleek, responsive, and functional web-based calculator built with HTML, CSS, and JavaScript.
+A modern, fully-featured web calculator built with vanilla HTML, CSS, and JavaScript. No dependencies, no frameworks, no `eval()`.
 
-## 🚀 Features
+## Features
 
-- **Modern Design**: Clean UI with a dark theme and smooth hover effects.
-- **Responsive Layout**: Optimized for both desktop and mobile screens using CSS Grid.
-- **Full Functionality**: Supports addition, subtraction, multiplication, and division.
-- **User-Friendly**: Includes `Clear (C)` and `Delete (DEL)` functions for easy correction.
-- **Self-Contained**: The main logic and styles are embedded within a single HTML file for easy portability.
+- **Safe Math Engine** – Proper arithmetic without `eval()`
+- **Expression Preview** – See your full calculation before hitting =
+- **Keyboard Support** – Type digits and operators like a real calculator
+- **Thousand Separators** – Formatted numbers for easy reading
+- **Sign Toggle (±)** – Quickly flip between positive and negative
+- **Percentage (%)** – Divide by 100 in one tap
+- **Chain Calculations** – Press = after any operation to continue
+- **Error Handling** – Division by zero and overflow are caught cleanly
+- **Responsive Design** – Works on desktop, tablet, and mobile
+- **Modern Dark UI** – Premium glassmorphism aesthetic with smooth animations
+- **Zero Dependencies** – Pure HTML/CSS/JS, no libraries or frameworks
 
-## 🛠️ Technologies Used
+## Tech Stack
 
-- **HTML5**: For the structure of the calculator.
-- **CSS3**: For custom styling, layout (Grid), and responsiveness.
-- **JavaScript (ES6)**: For arithmetic logic and event handling.
+| Layer | Technology |
+|-------|-----------|
+| Structure | HTML5 |
+| Styling | CSS3 (Grid, Custom Properties, Animations) |
+| Logic | Vanilla JavaScript (ES6+) |
 
-## 📖 How to Use
+## Quick Start
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/Sahil-K-Y/calculator.git
-   ```
-2. Open `index.html` in your favorite web browser.
-3. Start calculating!
+```bash
+git clone https://github.com/Sahil-K-Y/calculator.git
+cd calculator
+open index.html
+```
 
-## 📸 Preview
+No build step required. Open `index.html` in any modern browser and start calculating.
 
-*(Add a screenshot here if available)*
+## Keyboard Shortcuts
+
+| Key | Action |
+|-----|--------|
+| `0-9` | Digit input |
+| `.` | Decimal point |
+| `+` `-` `*` `/` | Operators |
+| `Enter` or `=` | Calculate |
+| `Backspace` | Delete last digit |
+| `Escape` or `Delete` | Clear all (AC) |
+| `%` | Percent |
+
+## What Makes It Professional
+
+- **No `eval()`** – The calculation engine uses a safe, explicit arithmetic function. No code injection risk, no unexpected behavior.
+- **Floating Point Sanitization** – Results are rounded to 12 significant digits to avoid `0.1 + 0.2 = 0.30000000000000004`.
+- **Input Limits** – Maximum 16 digits to prevent display overflow.
+- **Responsive Font Scaling** – Display font shrinks gracefully with very long numbers.
+- **Operator Highlighting** – The active operator button lights up so you always know what's pending.
+- **Smooth Animations** – Subtle scale and ripple effects give tactile feedback.
+
+## License
+
+MIT
 
 ---
-Developed by [Sahil Kumar](https://github.com/Sahil-K-Y)
+
+Built by [Sahil Kumar](https://github.com/Sahil-K-Y)
